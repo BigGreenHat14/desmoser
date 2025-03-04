@@ -120,6 +120,7 @@ except:
 if not noautodef:
     for i in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQURSTUVWXYZ":
         assign_to_main(i,DesmosObject(i))
+    assign_to_main("list_comprehension",list_comprehension)
     assign_to_main("expression",DesmosObject)
     assign_to_main("if_else",if_else)
     assign_to_main("join_actions",join_actions)
