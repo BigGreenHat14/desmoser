@@ -11,10 +11,13 @@ class DesmosObject():
             self.rawexp = str(exp.real) + " + " + str(exp.imag) + "i"
         elif type(exp) == list:
             self.exp = "\\left[" + ",".join([(str(i) if i != ... else "...") for i in exp]) + "\\right]"
-            self.rawexp = ",".join([(str(i) if i != ... else "...") for i in exp])
+            self.rawexp = "\\left[" + ",".join([(str(i) if i != ... else "...") for i in exp]) + "\\right]"
         elif type(exp) == tuple:
             self.exp = "\\left(" + ",".join([(str(i) if i != ... else "...") for i in exp]) + "\\right)"
             self.rawexp = "\\left(" + ",".join([(str(i) if i != ... else "...") for i in exp]) + "\\right)"
+        elif type(exp) == bool:
+            self.exp = "\\left(" + str(int(exp)) + "\\right)"
+            self.rawexp = str(int(exp))
         elif type(exp) != DesmosObject:
             self.exp = r"\left(" + str(exp) + r"\right)"
             self.rawexp = exp
