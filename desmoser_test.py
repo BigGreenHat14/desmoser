@@ -1,6 +1,5 @@
 ### Result : https://www.desmos.com/calculator/vexzmry6wm ###
 import desmoser
-import math
 obj = match_case(var("op"),[
     a + b,a - b,a * b,a / b,a ** b,a % b,a // b,a.nth_root()
 ])
