@@ -10,11 +10,11 @@ class DesmosObject():
             self.exp = r"\left(" + str(exp.real) + " + " + str(exp.imag) + r"i\right)"
             self.rawexp = str(exp.real) + " + " + str(exp.imag) + "i"
         elif type(exp) == list:
-            self.exp = "\\left[" + ",".join([str(i) for i in exp]) + "\\right]"
-            self.rawexp = ",".join([str(i) for i in exp])
+            self.exp = "\\left[" + ",".join([(str(i) if i != ... else "...") for i in exp]) + "\\right]"
+            self.rawexp = ",".join([(str(i) if i != ... else "...") for i in exp])
         elif type(exp) == tuple:
-            self.exp = "\\left(" + ",".join([str(i) for i in list(exp)]) + "\\right)"
-            self.rawexp = "\\left(" + ",".join([str(i) for i in list(exp)]) + "\\right)"
+            self.exp = "\\left(" + ",".join([(str(i) if i != ... else "...") for i in exp]) + "\\right)"
+            self.rawexp = "\\left(" + ",".join([(str(i) if i != ... else "...") for i in exp]) + "\\right)"
         elif type(exp) != DesmosObject:
             self.exp = r"\left(" + str(exp) + r"\right)"
             self.rawexp = exp
@@ -86,6 +86,10 @@ def join_actions(actions:list):
     return ",".join(actions)
 def builtin_function(obj,name):
     DesmosObject(obj)._func(name)
+def list_comprehension(foreach:DesmosObject,vars:dict):
+    tmp = (r"\left[FOREACH\operatorname{for}CONDITIONS\right]".replace("FOREACH",DesmosObject(foreach).exp))
+    tmp = tmp.replace("CONDITIONS",",".join([DesmosObject(key).rawexp + "=" + DesmosObject(value).exp for key,value in vars.items()]))
+    return DesmosObject(tmp)
 def function(name,*params):
     return f"{var(name)}\\left({','.join([value.exp for value in _listexp(params)])}\\right)"
 def if_else(condition,trueval,falseval="0\\div0"):
