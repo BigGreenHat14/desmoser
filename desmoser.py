@@ -24,6 +24,7 @@ class DesmosObject():
         else:
             self.exp = exp.exp
             self.rawexp = exp.rawexp
+        self.h = self.exp
     def __add__(self,other):
         return DesmosObject(self.exp + r"+" + DesmosObject(other).exp)
     def __sub__(self,other):
