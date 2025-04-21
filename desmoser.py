@@ -121,6 +121,7 @@ try:
     noautodef = sys.modules["__main__"].__dict__["_noautodef"]
 except:
     noautodef = False
+undefined = DesmosObject("0\\div0")
 if not noautodef:
     for i in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQURSTUVWXYZ":
         assign_to_main(i,DesmosObject(i))
@@ -131,6 +132,5 @@ if not noautodef:
     assign_to_main("var",var)
     assign_to_main("builtin_function",builtin_function)
     assign_to_main("function",function)
-    undefined = DesmosObject("0\\div0")
     assign_to_main("undefined",undefined)
     assign_to_main("match_case",match_case)
